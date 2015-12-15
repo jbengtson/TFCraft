@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -42,6 +44,23 @@ public class EntitySpiderTFC extends EntitySpider implements ICausesDamage
 			EntitySkeleton es = (EntitySkeleton)this.riddenByEntity;
 			es.dismountEntity(es.ridingEntity);
 			es.setDead();
+		}
+	}
+
+	@Override
+	protected void dropFewItems(boolean recentPlayerHit, int lootingLvl) {
+		Item item = this.getDropItem();
+
+		if(item != null) {
+			int j = this.rand.nextInt(3);
+
+			if(lootingLvl > 0) {
+				j += this.rand.nextInt(lootingLvl + 1);
+			}
+
+			for(int k = 0; k < j; ++k) {
+				this.dropItem(item, 1);
+			}
 		}
 	}
 

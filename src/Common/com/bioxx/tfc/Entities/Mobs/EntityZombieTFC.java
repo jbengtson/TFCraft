@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
@@ -75,6 +76,12 @@ public class EntityZombieTFC extends EntityZombie implements ICausesDamage, IInn
 		if (var1 > 20)
 			var1 = 20;
 		return var1;
+	}
+
+	@Override
+	protected Item getDropItem()
+	{
+		return null;
 	}
 
 	@Override
