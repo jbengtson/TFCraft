@@ -214,8 +214,6 @@ public class TFCBlocks
 	public static Block workbench;
 	public static Block cactus;
 	public static Block reeds;
-	public static Block pumpkin;
-	public static Block litPumpkin;
 	public static Block buttonWood;
 	public static Block vine;
 	public static Block leatherRack;

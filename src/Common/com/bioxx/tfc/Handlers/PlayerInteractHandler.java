@@ -108,16 +108,5 @@ public class PlayerInteractHandler
 			ItemStack tfcPlanks = new ItemStack(TFCBlocks.planks, count);
 			player.inventory.addItemStackToInventory(tfcPlanks);
 		}
-		else if (is.getItem() == Item.getItemFromBlock(Blocks.lit_pumpkin))
-		{
-			int count = is.stackSize;
-			item.delayBeforeCanPickup = 100;
-			item.setDead();
-			item.setInvisible(true);
-			Random rand = player.worldObj.rand;
-			player.worldObj.playSoundAtEntity(player, "random.pop", 0.2F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
-			ItemStack jackOLanternTFC = new ItemStack(TFCBlocks.litPumpkin, count);
-			player.inventory.addItemStackToInventory(jackOLanternTFC);
-		}
 	}
 }

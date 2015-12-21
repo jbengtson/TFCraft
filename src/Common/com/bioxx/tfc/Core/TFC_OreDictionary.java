@@ -678,11 +678,6 @@ public class TFC_OreDictionary
 		OreDictionary.registerOre("blockTorch", new ItemStack(Blocks.torch));
 		OreDictionary.registerOre("blockTorch", new ItemStack(TFCBlocks.torch));
 
-		OreDictionary.registerOre("blockPumpkin", new ItemStack(Blocks.pumpkin));
-		OreDictionary.registerOre("blockPumpkin", new ItemStack(TFCBlocks.pumpkin));
-		OreDictionary.registerOre("blockLitPumpkin", new ItemStack(Blocks.lit_pumpkin));
-		OreDictionary.registerOre("blockLitPumpkin", new ItemStack(TFCBlocks.litPumpkin));
-
 		//Seed Bags
 		for (Item seed : Recipes.seeds)
 			OreDictionary.registerOre("seedBag", new ItemStack(seed, 1, WILD));

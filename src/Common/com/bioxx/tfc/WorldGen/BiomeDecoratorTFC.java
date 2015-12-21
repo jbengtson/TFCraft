@@ -111,14 +111,6 @@ public class BiomeDecoratorTFC extends BiomeDecorator
 			}
 		}
 
-		if (this.randomGenerator.nextInt(300) == 0)
-		{
-			xCoord = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-			zCoord = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-			yCoord = this.currentWorld.getHeightValue(xCoord, zCoord);
-			new WorldGenCustomPumpkin().generate(this.currentWorld, this.randomGenerator, xCoord, yCoord, zCoord);
-		}
-
 		for (var2 = 0; var2 < this.cactiPerChunk; ++var2)
 		{
 			xCoord = this.chunk_X + this.randomGenerator.nextInt(16) + 8;

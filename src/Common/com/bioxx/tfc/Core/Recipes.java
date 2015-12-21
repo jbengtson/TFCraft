@@ -183,8 +183,6 @@ public class Recipes
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.carpet, 2, 0), "$$", '$', "materialCloth"));
 
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TFCBlocks.litPumpkin, 1), "blockTorch", "blockPumpkin"));
-
 		GameRegistry.addRecipe(new ItemStack(TFCItems.glassBottle, 3), "# #", " # ", '#', new ItemStack(Blocks.glass));
 
 		for (int i = 0; i < Global.DYE_NAMES.length; i++)
