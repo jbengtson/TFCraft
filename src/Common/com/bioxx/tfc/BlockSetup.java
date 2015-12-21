@@ -178,8 +178,6 @@ public class BlockSetup extends TFCBlocks
 		GameRegistry.registerBlock(workbench, ItemTerraBlock.class, "Workbench");
 		GameRegistry.registerBlock(cactus, ItemTerraBlock.class, "Cactus");
 		GameRegistry.registerBlock(reeds, "Reeds");
-		GameRegistry.registerBlock(pumpkin, ItemTerraBlock.class, "Pumpkin");
-		GameRegistry.registerBlock(litPumpkin, ItemTerraBlock.class, "LitPumpkin");
 		GameRegistry.registerBlock(buttonWood, "ButtonWood");
 		GameRegistry.registerBlock(vine, ItemVine.class, "Vine");
 		GameRegistry.registerBlock(leatherRack, "LeatherRack");
@@ -234,8 +232,6 @@ public class BlockSetup extends TFCBlocks
 		workbench = new BlockWorkbench().setHardness(2.5F).setStepSound(Block.soundTypeWood).setBlockName("Workbench").setBlockTextureName("crafting_table");
 		cactus = new BlockCustomCactus().setHardness(0.4F).setStepSound(Block.soundTypeCloth).setBlockName("Cactus").setBlockTextureName("cactus");
 		reeds = new BlockCustomReed().setHardness(0.0F).setStepSound(Block.soundTypeGrass).setBlockName("Reeds").setBlockTextureName("reeds");
-		pumpkin = new BlockCustomPumpkin(false).setHardness(1.0F).setStepSound(Block.soundTypeWood).setBlockName("Pumpkin").setBlockTextureName("pumpkin");
-		litPumpkin = new BlockCustomPumpkin(true).setHardness(1.0F).setStepSound(Block.soundTypeWood).setLightLevel(1.0F).setBlockName("LitPumpkin").setBlockTextureName("pumpkin");
 		buttonWood = new BlockCustomButtonWood().setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("ButtonWood");
 		vine = new BlockCustomVine().setHardness(0.2F).setStepSound(Block.soundTypeGrass).setBlockName("Vine").setBlockTextureName("vine");
 
