@@ -55,106 +55,86 @@ public class BlockBed extends BlockDirectional
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
 	{
-		if (world.isRemote)
-		{
-			return true;
-		}
-		else
-		{
-			int i1 = world.getBlockMetadata(x, y, z);
+		if(world.isRemote) { return true; }
 
-			if (!isBlockHeadOfBed(i1))
-			{
-				int j1 = getDirection(i1);
-				x += FOOT_HEAD_BLOCKMAP[j1][0];
-				z += FOOT_HEAD_BLOCKMAP[j1][1];
+		int i1 = world.getBlockMetadata(x, y, z);
 
-				if (world.getBlock(x, y, z) != this)
-					return true;
+		if(!isBlockHeadOfBed(i1)) {
+			int j1 = getDirection(i1);
+			x += FOOT_HEAD_BLOCKMAP[j1][0];
+			z += FOOT_HEAD_BLOCKMAP[j1][1];
 
-				i1 = world.getBlockMetadata(x, y, z);
-			}
-
-			if (world.provider.canRespawnHere() && world.getBiomeGenForCoords(x, z) != TFCBiome.HELL)
-			{
-				if (isBedOccupied(i1))
-				{
-					EntityPlayer entityplayer1 = null;
-					Iterator iterator = world.playerEntities.iterator();
-
-					while (iterator.hasNext())
-					{
-						EntityPlayer entityplayer2 = (EntityPlayer)iterator.next();
-
-						if (entityplayer2.isPlayerSleeping())
-						{
-							ChunkCoordinates chunkcoordinates = entityplayer2.playerLocation;
-
-							if (chunkcoordinates.posX == x && chunkcoordinates.posY == y && chunkcoordinates.posZ == z)
-							{
-								entityplayer1 = entityplayer2;
-							}
-						}
-					}
-
-					if (entityplayer1 != null)
-					{
-						TFC_Core.sendInfoMessage(player, new ChatComponentTranslation("tile.bed.occupied"));
-						return true;
-					}
-
-					setBedOccupied(world, x, y, z, false);
-				}
-
-				EnumStatus enumstatus = player.sleepInBedAt(x, y, z);
-
-				if (enumstatus == EnumStatus.OK)
-				{
-					TFC_Core.sendInfoMessage(player, new ChatComponentTranslation("tile.customBed.sleep"));
-					setBedOccupied(world, x, y, z, true);
-					return true;
-				}
-				else
-				{
-					if (enumstatus == EnumStatus.NOT_POSSIBLE_NOW)
-						TFC_Core.sendInfoMessage(player, new ChatComponentTranslation("tile.bed.noSleep"));
-					else if (enumstatus == EnumStatus.NOT_SAFE)
-						TFC_Core.sendInfoMessage(player, new ChatComponentTranslation("tile.bed.notSafe"));
-
-					return true;
-				}
-			}
-			else
-			{
-				double d0 = x + 0.5D;
-				double d1 = y + 0.5D;
-				double d2 = z + 0.5D;
-				world.setBlockToAir(x, y, z);
-				int k1 = getDirection(i1);
-				x += FOOT_HEAD_BLOCKMAP[k1][0];
-				z += FOOT_HEAD_BLOCKMAP[k1][1];
-
-				if (world.getBlock(x, y, z) == this)
-				{
-					world.setBlockToAir(x, y, z);
-					d0 = (d0 + x + 0.5D) / 2.0D;
-					d1 = (d1 + y + 0.5D) / 2.0D;
-					d2 = (d2 + z + 0.5D) / 2.0D;
-				}
-
-				world.newExplosion((Entity)null, x + 0.5F, y + 0.5F, z + 0.5F, 5.0F, true, true);
+			if(world.getBlock(x, y, z) != this) {
 				return true;
 			}
+
+			i1 = world.getBlockMetadata(x, y, z);
+		}
+
+		if(world.provider.canRespawnHere() && world.getBiomeGenForCoords(x, z) != TFCBiome.HELL) {
+			if(isBedOccupied(i1)) {
+				EntityPlayer entityplayer1 = null;
+				Iterator iterator = world.playerEntities.iterator();
+
+				while(iterator.hasNext()) {
+					EntityPlayer entityplayer2 = (EntityPlayer)iterator.next();
+
+					if(entityplayer2.isPlayerSleeping()) {
+						ChunkCoordinates chunkcoordinates = entityplayer2.playerLocation;
+
+						if(chunkcoordinates.posX == x && chunkcoordinates.posY == y && chunkcoordinates.posZ == z) {
+							entityplayer1 = entityplayer2;
+						}
+					}
+				}
+
+				if(entityplayer1 != null) {
+					TFC_Core.sendInfoMessage(player, new ChatComponentTranslation("tile.bed.occupied"));
+					return true;
+				}
+
+				setBedOccupied(world, x, y, z, false);
+			}
+
+			EnumStatus enumstatus = player.sleepInBedAt(x, y, z);
+
+			if(enumstatus == EnumStatus.OK) {
+				// TFC_Core.sendInfoMessage(player, new ChatComponentTranslation("tile.customBed.sleep"));
+				setBedOccupied(world, x, y, z, true);
+				return true;
+			} else {
+				if (enumstatus == EnumStatus.NOT_POSSIBLE_NOW) {
+					TFC_Core.sendInfoMessage(player, new ChatComponentTranslation("tile.bed.noSleep"));
+				} else if (enumstatus == EnumStatus.NOT_SAFE) {
+					TFC_Core.sendInfoMessage(player, new ChatComponentTranslation("tile.bed.notSafe"));
+				}
+
+				return true;
+			}
+		} else {
+			double d0 = x + 0.5D;
+			double d1 = y + 0.5D;
+			double d2 = z + 0.5D;
+			world.setBlockToAir(x, y, z);
+			int k1 = getDirection(i1);
+			x += FOOT_HEAD_BLOCKMAP[k1][0];
+			z += FOOT_HEAD_BLOCKMAP[k1][1];
+
+			if(world.getBlock(x, y, z) == this) {
+				world.setBlockToAir(x, y, z);
+				d0 = (d0 + x + 0.5D) / 2.0D;
+				d1 = (d1 + y + 0.5D) / 2.0D;
+				d2 = (d2 + z + 0.5D) / 2.0D;
+			}
+
+			world.newExplosion((Entity)null, x + 0.5F, y + 0.5F, z + 0.5F, 5.0F, true, true);
+			return true;
 		}
 	}
 
 	@Override
 	public boolean isBed(IBlockAccess world, int x, int y, int z, EntityLivingBase player)
 	{
-		World w = (World)world;
-		if(!w.isRemote && player!=null)
-			((EntityPlayer)player).sleepTimer = 50;
-
 		return true;
 	}
 
@@ -167,12 +147,9 @@ public class BlockBed extends BlockDirectional
 	 */
 	public IIcon getIcon(int par1, int par2)
 	{
-		if (par1 == 0)
-		{
+		if(par1 == 0) {
 			return TFCBlocks.planks.getBlockTextureFromSide(par1);
-		}
-		else
-		{
+		} else {
 			int k = getDirection(par2);
 			int l = Direction.bedDirection[k][par1];
 			int i1 = isBlockHeadOfBed(par2) ? 1 : 0;
@@ -249,19 +226,14 @@ public class BlockBed extends BlockDirectional
 		int i1 = par1World.getBlockMetadata(par2, par3, par4);
 		int j1 = getDirection(i1);
 
-		if (isBlockHeadOfBed(i1))
-		{
-			if (par1World.getBlock(par2 - FOOT_HEAD_BLOCKMAP[j1][0], par3, par4 - FOOT_HEAD_BLOCKMAP[j1][1]) != this)
-			{
+		if(isBlockHeadOfBed(i1)) {
+			if(par1World.getBlock(par2 - FOOT_HEAD_BLOCKMAP[j1][0], par3, par4 - FOOT_HEAD_BLOCKMAP[j1][1]) != this) {
 				par1World.setBlockToAir(par2, par3, par4);
 			}
-		}
-		else if (par1World.getBlock(par2 + FOOT_HEAD_BLOCKMAP[j1][0], par3, par4 + FOOT_HEAD_BLOCKMAP[j1][1]) != this)
-		{
+		} else if(par1World.getBlock(par2 + FOOT_HEAD_BLOCKMAP[j1][0], par3, par4 + FOOT_HEAD_BLOCKMAP[j1][1]) != this) {
 			par1World.setBlockToAir(par2, par3, par4);
 
-			if (!par1World.isRemote)
-			{
+			if(!par1World.isRemote) {
 				this.dropBlockAsItem(par1World, par2, par3, par4, i1, 0);
 			}
 		}
@@ -307,10 +279,11 @@ public class BlockBed extends BlockDirectional
 	{
 		int l = par0World.getBlockMetadata(par1, par2, par3);
 
-		if (par4)
+		if(par4) {
 			l |= 4;
-		else
+		} else {
 			l &= -5;
+		}
 
 		par0World.setBlockMetadataWithNotify(par1, par2, par3, l, 4);
 	}
@@ -323,21 +296,18 @@ public class BlockBed extends BlockDirectional
 		int i1 = par0World.getBlockMetadata(par1, par2, par3);
 		int j1 = BlockDirectional.getDirection(i1);
 
-		for (int k1 = 0; k1 <= 1; ++k1)
-		{
+		for(int k1 = 0; k1 <= 1; ++k1) {
 			int l1 = par1 - FOOT_HEAD_BLOCKMAP[j1][0] * k1 - 1;
 			int i2 = par3 - FOOT_HEAD_BLOCKMAP[j1][1] * k1 - 1;
 			int j2 = l1 + 2;
 			int k2 = i2 + 2;
 
-			for (int l2 = l1; l2 <= j2; ++l2)
-			{
-				for (int i3 = i2; i3 <= k2; ++i3)
-				{
-					if (World.doesBlockHaveSolidTopSurface(par0World, l2, par2 - 1, i3) && !par0World.getBlock(l2, par2, i3).getMaterial().isOpaque() && !par0World.getBlock(l2, par2 + 1, i3).getMaterial().isOpaque())
-					{
-						if (par4 <= 0)
+			for(int l2 = l1; l2 <= j2; ++l2) {
+				for(int i3 = i2; i3 <= k2; ++i3) {
+					if (World.doesBlockHaveSolidTopSurface(par0World, l2, par2 - 1, i3) && !par0World.getBlock(l2, par2, i3).getMaterial().isOpaque() && !par0World.getBlock(l2, par2 + 1, i3).getMaterial().isOpaque()) {
+						if (par4 <= 0) {
 							return new ChunkCoordinates(l2, par2, i3);
+						}
 
 						--par4;
 					}
@@ -354,8 +324,9 @@ public class BlockBed extends BlockDirectional
 	@Override
 	public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
 	{
-		if (!isBlockHeadOfBed(par5))
+		if(!isBlockHeadOfBed(par5)) {
 			super.dropBlockAsItemWithChance(par1World, par2, par3, par4, par5, par6, 0);
+		}
 	}
 
 	@Override
@@ -384,14 +355,14 @@ public class BlockBed extends BlockDirectional
 	@Override
 	public void onBlockHarvested(World par1World, int par2, int par3, int par4, int par5, EntityPlayer par6EntityPlayer)
 	{
-		if (par6EntityPlayer.capabilities.isCreativeMode && isBlockHeadOfBed(par5))
-		{
+		if(par6EntityPlayer.capabilities.isCreativeMode && isBlockHeadOfBed(par5)) {
 			int i1 = getDirection(par5);
 			par2 -= FOOT_HEAD_BLOCKMAP[i1][0];
 			par4 -= FOOT_HEAD_BLOCKMAP[i1][1];
 
-			if (par1World.getBlock(par2, par3, par4) == this)
+			if(par1World.getBlock(par2, par3, par4) == this) {
 				par1World.setBlockToAir(par2, par3, par4);
+			}
 		}
 	}
 }

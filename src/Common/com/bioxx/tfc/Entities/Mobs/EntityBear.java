@@ -109,7 +109,7 @@ public class EntityBear extends EntityTameable implements ICausesDamage, IAnimal
 		this.targetDeer = new EntityAITargetNonTamedTFC(this, EntityDeer.class, 200, false);
 		this.targetPig = new EntityAITargetNonTamedTFC(this, EntityPigTFC.class, 200, false);
 		this.targetHorse = new EntityAITargetNonTamedTFC(this, EntityHorseTFC.class, 200, false);
-		this.targetPlayer = new EntityAITargetNonTamedTFC(this, EntityPlayer.class, 20, false);
+		this.targetPlayer = new EntityAITargetNonTamedTFC(this, EntityPlayer.class, 50, false);
 		this.hurtAI = new EntityAIHurtByTarget(this, true);
 
 		if (par1World.difficultySetting != EnumDifficulty.PEACEFUL)

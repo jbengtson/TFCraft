@@ -76,6 +76,7 @@ public class Recipes
 			int l = i%16;
 			if(i==l)
 			{
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TFCItems.singlePlank, 4, i), new ItemStack(TFCItems.logs, 1, i), "itemAxe")); // reduced plank production with axes
 				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TFCItems.singlePlank, 8, i), new ItemStack(TFCItems.logs, 1, i), "itemSaw"));
 				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TFCItems.singlePlank, 4, i), new ItemStack(TFCBlocks.planks, 1, i), "itemSaw"));
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(TFCBlocks.woodSupportV, 8, i), "A2", " 2", '2', new ItemStack(TFCItems.logs, 1, i), 'A', "itemSaw"));
@@ -92,6 +93,7 @@ public class Recipes
 			}
 			else if(i/16 == 1)
 			{
+				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TFCItems.singlePlank, 4, i), new ItemStack(TFCItems.logs, 1, i), "itemAxe")); // reduced plank production with axes
 				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TFCItems.singlePlank, 8, i), new ItemStack(TFCItems.logs, 1, i), "itemSaw"));
 				GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TFCItems.singlePlank, 4, i), new ItemStack(TFCBlocks.planks2, 1, l), "itemSaw"));
 				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(TFCBlocks.woodSupportV2, 8, l), "A2", " 2", '2', new ItemStack(TFCItems.logs, 1, i), 'A', "itemSaw"));
@@ -824,7 +826,7 @@ public class Recipes
 		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCItems.stoneKnifeHead, 1), new Object[]
 				{ " #", "##", "##", "##", "##", '#', new ItemStack(TFCItems.flatRock, 1, WILD) });
 		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCItems.stoneHammerHead, 1), new Object[]
-				{ "#####", "#####", "  #  ", '#', new ItemStack(TFCItems.flatRock, 1, WILD) });
+				{"#####", "#####", "  #  ", '#', new ItemStack(TFCItems.flatRock, 1, WILD)});
 
 		for(int i = 0; i < Global.STONE_IGIN.length; i++)
 		{
@@ -857,42 +859,42 @@ public class Recipes
 
 
 		//Inverse Clay Knapping
-		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCItems.ceramicMold, 2, 0), new Object[] { 
-			"    ",
-			" ## ",
-			" ## ",
-			" ## ",
-			"    ", '#', new ItemStack(TFCItems.flatClay, 1, 1)});
-		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCItems.potteryJug, 1, 0), new Object[] { 
-			"X XXX",
-			"    X",
-			"   X ",
-			"    X",
-			"   XX", 'X', new ItemStack(TFCItems.flatClay, 1, 1)});
-		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCItems.potterySmallVessel, 1, 0), new Object[] { 
-			"#   #",
-			"     ",
-			"     ",
-			"     ",
-			"#   #", '#', new ItemStack(TFCItems.flatClay, 1, 1)});
-		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCBlocks.flowerPot), new Object[] { 
-			"#   #",
-			" ### ",
-			" ### ",
-			" ### ",
-			"#   #", '#', new ItemStack(TFCItems.flatClay, 1, 1)});
-		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCBlocks.crucible, 1), new Object[] { 
-			" ### ",
-			" ### ",
-			" ### ",
-			" ### ",
-			"     ", '#', new ItemStack(TFCItems.flatClay, 1, 3)});
-		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCBlocks.vessel, 1), new Object[] { 
-			" ### ",
-			" ### ",
-			" ### ",
-			" ### ",
-			"     ", '#', new ItemStack(TFCItems.flatClay, 1, 1)});
+		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCItems.ceramicMold, 2, 0), new Object[]{
+				"    ",
+				" ## ",
+				" ## ",
+				" ## ",
+				"    ", '#', new ItemStack(TFCItems.flatClay, 1, 1)});
+		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCItems.potteryJug, 1, 0), new Object[]{
+				"X XXX",
+				"    X",
+				"   X ",
+				"    X",
+				"   XX", 'X', new ItemStack(TFCItems.flatClay, 1, 1)});
+		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCItems.potterySmallVessel, 1, 0), new Object[]{
+				"#   #",
+				"     ",
+				"     ",
+				"     ",
+				"#   #", '#', new ItemStack(TFCItems.flatClay, 1, 1)});
+		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCBlocks.flowerPot), new Object[]{
+				"#   #",
+				" ### ",
+				" ### ",
+				" ### ",
+				"#   #", '#', new ItemStack(TFCItems.flatClay, 1, 1)});
+		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCBlocks.crucible, 1), new Object[]{
+				" ### ",
+				" ### ",
+				" ### ",
+				" ### ",
+				"     ", '#', new ItemStack(TFCItems.flatClay, 1, 3)});
+		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCBlocks.vessel, 1), new Object[]{
+				" ### ",
+				" ### ",
+				" ### ",
+				" ### ",
+				"     ", '#', new ItemStack(TFCItems.flatClay, 1, 1)});
 		/* Moved to TFC_ConfigFiles.firstLoadCrafting(), as it is dependant on a configureation option.
 		CraftingManagerTFC.getInstance().addRecipe(new ItemStack(TFCItems.potteryBowl, 2), new Object[]
 		{
